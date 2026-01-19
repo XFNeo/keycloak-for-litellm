@@ -9,7 +9,7 @@ auth:
 command:
   - /opt/bitnami/keycloak/bin/kc.sh
 args:
-  - start-dev
+  - start
 
 extraEnvVars:
   - name: KC_HTTP_ENABLED
@@ -18,10 +18,18 @@ extraEnvVars:
     value: "false"
   - name: KC_PROXY
     value: "edge"
+  - name: KC_DB
+    value: postgres
+  - name: KC_DB_URL
+    value: jdbc:postgresql://keycloak-postgresql.keycloak.svc.cluster.local:5432/keycloak
+  - name: KC_DB_USERNAME
+    value: keycloak
+  - name: KC_DB_PASSWORD
+    value: keycloak
 
 service:
   ports:
-    http: 8080
+    http: 80
 
 resources:
   requests:
